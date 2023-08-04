@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useQuery } from "react-query";
 
-import { Card, List, Button, Skeleton } from "antd";
+import { Card, List, Skeleton } from "antd";
 import ServiceCard from "./ServiceCard";
 
 const fetchServices = async () => {
@@ -21,7 +21,6 @@ const Services = () => {
   const { data, isLoading, error } = useQuery("services", fetchServices);
 
   if (data) {
-    console.log(data);
     if (data.length === 0) {
       return <h1>There are no services!</h1>;
     }
@@ -80,7 +79,7 @@ const Services = () => {
   }
 
   return (
-    <div>
+    <>
       <div
         style={{
           borderBottom: "1px solid #ccc",
@@ -93,7 +92,7 @@ const Services = () => {
         <h1>Client Services</h1>
       </div>
       {content}
-    </div>
+    </>
   );
 };
 

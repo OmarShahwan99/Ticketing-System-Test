@@ -42,6 +42,9 @@ const NewTicket = (props) => {
         <Input
           onChange={(e) => setEnteredSrvId(e.target.value)}
           placeholder="Service id (1 or 2)"
+          required
+          type="text"
+          rules={[{ required: true, message: "Please input your Eamil!" }]}
         />
       </Modal>
     </>

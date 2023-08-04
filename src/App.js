@@ -2,7 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import DefaultLayout from "./layout/DefaultLayout";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import { QueryClient, QueryClientProvider, useQueryClient } from "react-query";
+import { QueryClient, QueryClientProvider } from "react-query";
 import { useContext } from "react";
 import AuthContext from "./store/auth-context";
 import TicketDetails from "./components/Tickets/TicketDetails";
@@ -21,6 +21,7 @@ function App() {
           {isAuth && <Route path="/:id" element={<TicketDetails />} />}
           {!isAuth && <Route path="/login" element={<Login />} />}
           {!isAuth && <Route path="/register" element={<Register />} />}
+          <Route path="*" element={isAuth ? <IndexPage /> : <Login />} />
         </Routes>
       </DefaultLayout>
     </QueryClientProvider>

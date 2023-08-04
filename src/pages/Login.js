@@ -52,7 +52,7 @@ const Login = () => {
       <div style={{ textAlign: "center", marginBottom: "20px" }}>
         <h1 style={{ margin: "0" }}>Welcome Back!</h1>
         <p style={{ marginTop: "10px" }}>
-          Login for going to your tacketing system
+          Login for going to your ticketing system
         </p>
       </div>
       <Form name="normal_login" className="login-form" onFinish={onSubmit}>
