@@ -1,24 +1,9 @@
-import axios from "axios";
-import { useQuery } from "react-query";
-
 import { Card, List, Skeleton } from "antd";
 import ServiceCard from "./ServiceCard";
-
-const fetchServices = async () => {
-  try {
-    const response = await axios.get(
-      "https://assignments.aigate.me/backend_technical_test/public/api/view-services",
-      { headers: { Authorization: `Bearer ${localStorage.getItem("token")}` } }
-    );
-    const responseData = await response.data;
-    return responseData[0];
-  } catch (error) {
-    throw new Error(error.message);
-  }
-};
+import { useServicesData } from "../../hooks/useHttp";
 
 const Services = () => {
-  const { data, isLoading, error } = useQuery("services", fetchServices);
+  const { data, isLoading, error } = useServicesData();
 
   if (data) {
     if (data.length === 0) {
@@ -61,7 +46,7 @@ const Services = () => {
         dataSource={[1, 2, 3, 4, 5, 6, 7, 8]}
         renderItem={(item) => (
           <List.Item>
-            <Card title="">
+            <Card>
               <Skeleton active loading={isLoading} />
             </Card>
           </List.Item>

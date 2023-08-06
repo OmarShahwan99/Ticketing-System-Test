@@ -68,6 +68,19 @@ const onLogout = async () => {
   return response;
 };
 
+const fetchServices = async () => {
+  try {
+    const response = await axios.get(
+      "https://assignments.aigate.me/backend_technical_test/public/api/view-services",
+      { headers: { Authorization: `Bearer ${localStorage.getItem("token")}` } }
+    );
+    const responseData = await response.data;
+    return responseData[0];
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+
 export const useTicketsData = () => {
   return useQuery("tickets", fetchTickets);
 };
@@ -104,4 +117,8 @@ export const useRegister = () => {
 
 export const useLogout = (onSuccess) => {
   return useMutation(onLogout, { onSuccess });
+};
+
+export const useServicesData = () => {
+  return useQuery("services", fetchServices);
 };
